@@ -1,0 +1,54 @@
+<form class="m-5" ngForm="logIn" #logIn="ngForm" [formGroup]="form">
+  <div class="input-group">
+    <label for="firstName" class="input-group-text">span</label>
+    <input
+      ngModel
+      name="firstname"
+      class="form-control"
+      type="text"
+      minlength="3"
+      maxlength="10"
+      formControlName="userName"
+      required
+    />
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ngModel #check="ngModel" name="check" required />
+      check it
+    </label>
+  </div>
+  <div class="form-group">
+    <select
+      id=""
+      class="form-control"
+      ngModel
+      #select="ngModel"
+      name="select"
+      required
+    >
+      @for (method of contactmethod; track $index) {
+      <option [ngValue]="method">{{ method.name }}</option>
+      }
+    </select>
+  </div>
+  <div class="form-group">
+    @for (method of contactmethod; track $index) {
+    <label for="">
+      <input
+        type="radio"
+        [value]="method.id"
+        name="radio"
+        ngModel
+        #radio="ngModel"
+      />
+      {{ method.name }}
+    </label>
+
+    }
+  </div>
+  <p>
+    {{ logIn.value | json }}
+  </p>
+  <button class="btn btn-primary mt-4" [disabled]="logIn.invalid">click</button>
+</form>

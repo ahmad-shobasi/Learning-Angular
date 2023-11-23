@@ -1,0 +1,36 @@
+<form [formGroup]="form">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input
+      id="username"
+      formControlName="userName"
+      type="text"
+      class="form-control"
+    />
+  </div>
+  @if (userName?.touched && userName?.invalid) {
+
+  <div class="alert alert-danger">
+    @if(userName?.errors?.['required']){ Username is required }
+    @if(userName?.errors?.['minlength']){ Username must be at least 4 characters
+    long } @if(userName?.errors?.['cannotContainSpace']){ userName cannot
+    contain spaces }
+  </div>
+
+  }@else if(userName?.touched && userName?.valid) {
+  <div class="alert alert-success">looks good😊</div>
+  }
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      formControlName="password"
+      id="password"
+      type="text"
+      class="form-control"
+    />
+  </div>
+  <p>
+    {{ form.value | json }}
+  </p>
+  <button class="btn btn-primary" type="submit">Sign Up</button>
+</form>
